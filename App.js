@@ -28,20 +28,23 @@ export default function App() {
 
   return (
     <View style={styles.screen}>
-      <Button title="Add New Goal" onPress={() => setIsAddMode(true)}/>
+      <View style={styles.button}>
+        <Button title="Add New Goal" onPress={() => setIsAddMode(true)}/>
+      </View>
       <GoalInput 
-                  visible={isAddMode}
-                  onAddGoal={addGoalHandler}
-                  onCancel={cancelHandler} />
-      <FlatList style={styles.goalsContainer}
-                keyExtractor={(item, index) => item.id}
-                data={courseGoals} 
-                renderItem={itemData => (
-                  <GoalItem 
-                    onDelete={removeGoalHandler}
-                    id={itemData.item.id}
-                    title={itemData.item.value} />
-                )}> 
+        visible={isAddMode}
+        onAddGoal={addGoalHandler}
+        onCancel={cancelHandler} />
+      <FlatList 
+        style={styles.goalsContainer}
+        keyExtractor={(item, index) => item.id}
+        data={courseGoals} 
+        renderItem={itemData => (
+          <GoalItem 
+            onDelete={removeGoalHandler}
+            id={itemData.item.id}
+            title={itemData.item.value} />
+        )}> 
       </FlatList>
     </View>
   );
@@ -54,5 +57,10 @@ const styles = StyleSheet.create({
   goalsContainer: {
     marginTop: 20,
     marginBottom: 40
+  },
+  button: {
+      borderColor: "#ccc",
+      borderWidth: 1,
+      borderRadius: 10
   }
 });
